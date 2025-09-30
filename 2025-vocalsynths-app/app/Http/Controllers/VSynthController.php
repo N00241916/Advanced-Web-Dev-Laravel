@@ -12,7 +12,8 @@ class VSynthController extends Controller
      */
     public function index()
     {
-        //
+        $vsynths = VSynth::all();
+        return view('vsynths.index', compact('vsynths'));
     }
 
     /**
