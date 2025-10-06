@@ -12,8 +12,8 @@ class VSynthController extends Controller
      */
     public function index()
     {
-        $vsynths = VSynth::all();
-        return view('vsynths.index', compact('vsynths'));
+        $vsynths = VSynth::all(); //Returns all the books, and...
+        return view('vsynths.index', compact('vsynths')); //sends them to the view index
     }
 
     /**
@@ -21,7 +21,7 @@ class VSynthController extends Controller
      */
     public function create()
     {
-        //
+        return view('vsynths.create');
     }
 
     /**
@@ -35,15 +35,15 @@ class VSynthController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(VSynth $vSynth)
+    public function show(VSynth $vsynth)
     {
-        //
+        return view('vsynths.show')->with('vsynth', $vsynth);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(VSynth $vSynth)
+    public function edit(VSynth $vsynth)
     {
         //
     }
@@ -51,7 +51,7 @@ class VSynthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VSynth $vSynth)
+    public function update(Request $request, VSynth $vsynth)
     {
         //
     }
@@ -59,7 +59,7 @@ class VSynthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(VSynth $vSynth)
+    public function destroy(VSynth $vsynth)
     {
         //
     }
