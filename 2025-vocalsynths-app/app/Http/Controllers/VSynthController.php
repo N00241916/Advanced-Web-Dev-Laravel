@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\VSynth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VSynthController extends Controller
 {
@@ -29,7 +30,33 @@ class VSynthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([  //validates the parameters and sets restrictions
+            'name' => 'required',
+            'age' => 'required|integer',
+            'gender' => 'required',
+            'type' => 'required',
+            'release_date' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/vsynths'), $imageName);
+        }
+
+        VSynth::create([
+            'name' => $request->name,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'type' => $request->type,
+            'release_date' => $request->release_date,
+            'image' => $imageName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return to_route('vsynths.index')->with('success', 'Synth created successfully! :3');
     }
 
     /**
@@ -45,7 +72,7 @@ class VSynthController extends Controller
      */
     public function edit(VSynth $vsynth)
     {
-        //
+        return view('vsynths.edit')->with('vsynth', $vsynth);
     }
 
     /**
@@ -53,7 +80,36 @@ class VSynthController extends Controller
      */
     public function update(Request $request, VSynth $vsynth)
     {
-        //
+        $request->validate([  //validates the parameters and sets restrictions
+            'name' => 'required',
+            'age' => 'required|integer',
+            'gender' => 'required',
+            'type' => 'required',
+            'release_date' => 'required|date',
+            //'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/vsynths'), $imageName);
+        }
+        else {
+            $imageName = $vsynth->image;
+        }
+
+        $vsynth->update([
+            'name' => $request->name,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'type' => $request->type,
+            'release_date' => $request->release_date,
+            'image' => $imageName,
+           //'created_at' => old('created_at', $vsynth->release_date ?? ''),
+            'updated_at' => now()
+        ]);
+
+        return to_route('vsynths.index')->with('success', 'Synth updated successfully! :3');
     }
 
     /**
@@ -61,6 +117,12 @@ class VSynthController extends Controller
      */
     public function destroy(VSynth $vsynth)
     {
-        //
+        if (!$vsynth) {
+            return to_route('vsynths.index')->with('failure', 'Synth not found...');
+        }
+
+        $vsynth->delete();
+
+        return to_route('vsynths.index')->with('success', 'Synth successfully deleted!');
     }
 }
