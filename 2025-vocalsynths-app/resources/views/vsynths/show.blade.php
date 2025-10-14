@@ -7,17 +7,18 @@
 
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-cyan-100 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="font-semibold text-lg mb-4">Synth Details</h3>
-                        <x-vsynth-details
-                            :name="$vsynth->name"
-                            :age="$vsynth->age"
-                            :gender="$vsynth->gender"
-                            :type="$vsynth->type"
-                            :release_date="$vsynth->release_date"
-                            :image="$vsynth->image"
-                        />
+                    <h3 class="font-semibold text-lg mb-4">Synth Details</h3> 
+                            <x-vsynth-details
+                                :name="$vsynth->name"
+                                :age="$vsynth->age"
+                                :gender="$vsynth->gender"
+                                :type="$vsynth->type"
+                                :release_date="$vsynth->release_date"
+                                :image="$vsynth->image"
+                            />
+                            
                 </div>
             </div>
         </div>

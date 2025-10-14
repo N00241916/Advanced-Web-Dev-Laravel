@@ -86,28 +86,33 @@ class VSynthController extends Controller
             'gender' => 'required',
             'type' => 'required',
             'release_date' => 'required|date',
-            //'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
+
+        $data = $request->only(['name', 'age', 'gender', 'type', 'release_date']);
 
         if ($request->hasFile('image')) {
 
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images/vsynths'), $imageName);
-        }
-        else {
-            $imageName = $vsynth->image;
+            $data['image'] = $imageName;
         }
 
-        $vsynth->update([
-            'name' => $request->name,
-            'age' => $request->age,
-            'gender' => $request->gender,
-            'type' => $request->type,
-            'release_date' => $request->release_date,
-            'image' => $imageName,
-           //'created_at' => old('created_at', $vsynth->release_date ?? ''),
-            'updated_at' => now()
-        ]);
+        $vsynth->update($data);
+        // else {
+        //     $imageName = $vsynth->image;
+        // }
+
+        // $vsynth->update([
+        //     'name' => $request->name,
+        //     'age' => $request->age,
+        //     'gender' => $request->gender,
+        //     'type' => $request->type,
+        //     'release_date' => $request->release_date,
+        //     'image' => $imageName,
+        //    //'created_at' => old('created_at', $vsynth->release_date ?? ''),
+        //     'updated_at' => now()
+        // ]);
 
         return to_route('vsynths.index')->with('success', 'Synth updated successfully! :3');
     }

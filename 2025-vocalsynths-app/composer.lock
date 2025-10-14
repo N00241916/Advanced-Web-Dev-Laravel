@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdc6d92507d397adf1c269ed49ec424d",
+    "content-hash": "7113bbcb26f9de0de3d2b41814a9b957",
     "packages": [
         {
             "name": "brick/math",
@@ -508,6 +508,50 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "fantata/laravel-pod-player",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fantata/laravel-pod-player.git",
+                "reference": "1dfe63327138734282c87a508a921f315e9dce9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fantata/laravel-pod-player/zipball/1dfe63327138734282c87a508a921f315e9dce9f",
+                "reference": "1dfe63327138734282c87a508a921f315e9dce9f",
+                "shasum": ""
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Fantata\\LaravelPodPlayer\\LaravelPodPlayerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fantata\\LaravelPodPlayer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Read",
+                    "email": "chris@fantata.com"
+                }
+            ],
+            "description": "Laravel component to play an audio file, built with podcasts in mind.",
+            "support": {
+                "issues": "https://github.com/fantata/laravel-pod-player/issues",
+                "source": "https://github.com/fantata/laravel-pod-player/tree/0.1"
+            },
+            "time": "2023-07-05T17:18:07+00:00"
         },
         {
             "name": "fruitcake/php-cors",
