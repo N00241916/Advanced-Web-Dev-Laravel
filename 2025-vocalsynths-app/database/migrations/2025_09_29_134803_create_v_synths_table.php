@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('type');
             $table->date('release_date');
             $table->string('image');
+            $table->string('demolink');
             $table->timestamps();
         });
     }

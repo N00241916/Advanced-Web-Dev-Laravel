@@ -13,7 +13,7 @@ class VSynthController extends Controller
      */
     public function index()
     {
-        $vsynths = VSynth::all(); //Returns all the books, and...
+        $vsynths = VSynth::all(); //Returns all the synths, and...
         return view('vsynths.index', compact('vsynths')); //sends them to the view index
     }
 
@@ -36,7 +36,8 @@ class VSynthController extends Controller
             'gender' => 'required',
             'type' => 'required',
             'release_date' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'demolink' => 'required'
         ]);
 
         if ($request->hasFile('image')) {
@@ -52,6 +53,7 @@ class VSynthController extends Controller
             'type' => $request->type,
             'release_date' => $request->release_date,
             'image' => $imageName,
+            'demolink' => $request->demolink,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -86,16 +88,17 @@ class VSynthController extends Controller
             'gender' => 'required',
             'type' => 'required',
             'release_date' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'demolink' => 'required'
         ]);
 
-        $data = $request->only(['name', 'age', 'gender', 'type', 'release_date']);
+        $data = $request->only(['name', 'age', 'gender', 'type', 'release_date', 'demolink']);  //puts the validated parameters into a variable to be updated easier and more consistently
 
         if ($request->hasFile('image')) {
 
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images/vsynths'), $imageName);
-            $data['image'] = $imageName;
+            $data['image'] = $imageName;  //if the form has a new image for the synth, puts it into the data variable to be passed through
         }
 
         $vsynth->update($data);
@@ -123,7 +126,7 @@ class VSynthController extends Controller
     public function destroy(VSynth $vsynth)
     {
         if (!$vsynth) {
-            return to_route('vsynths.index')->with('failure', 'Synth not found...');
+            return to_route('vsynths.index')->with('failure', 'Synth not found...'); //returns you to the index page with a failure notification if the synth isnt found
         }
 
         $vsynth->delete();

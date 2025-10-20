@@ -23,7 +23,8 @@ class VSynthSeeder extends Seeder
                 'age' => 16,
                 'type' => 'Vocaloid',
                 'release_date' => '2007-08-31',
-                'image' => 'hatsune-miku.png'
+                'image' => 'hatsune-miku.png',
+                'demolink' => 'https://www.youtube.com/embed/wIMhsHlTLso?si=HHFuIk52CRL_JZp4'
             ],
             [
                 'name' => 'Megurine Luka',
@@ -31,7 +32,8 @@ class VSynthSeeder extends Seeder
                 'age' => 20,
                 'type' => 'Vocaloid',
                 'release_date' => '2009-01-30',
-                'image' => 'megurine-luka.png'
+                'image' => 'megurine-luka.png',
+                'demolink' => 'https://www.youtube.com/embed/IXciDycxyh8?si=vEatGDztgjd37FyS'
             ],
             [
                 'name' => 'Kagamine Rin',
@@ -39,7 +41,8 @@ class VSynthSeeder extends Seeder
                 'age' => 14,
                 'type' => 'Vocaloid',
                 'release_date' => '2007-12-27',
-                'image' => 'kagamine-rin.png'
+                'image' => 'kagamine-rin.png',
+                'demolink' => 'https://www.youtube.com/embed/Llx5qIxyGvg?si=rdo9fN0YZZDHdtQf'
             ],
             [
                 'name' => 'Kagamine Len',
@@ -47,7 +50,8 @@ class VSynthSeeder extends Seeder
                 'age' => 14,
                 'type' => 'Vocaloid',
                 'release_date' => '2007-12-27',
-                'image' => 'kagamine-len.png'
+                'image' => 'kagamine-len.png',
+                'demolink' => 'https://www.youtube.com/embed/Llx5qIxyGvg?si=rdo9fN0YZZDHdtQf'
             ],
             [
                 'name' => 'Kasane Teto',
@@ -55,7 +59,8 @@ class VSynthSeeder extends Seeder
                 'age' => 31,
                 'type' => 'Synthesiser V',
                 'release_date' => '2008-04-01',
-                'image' => 'kasane-teto.png'
+                'image' => 'kasane-teto.png',
+                'demolink' => 'https://www.youtube.com/embed/ibdPe02EsY8?si=FMjWTWhE1i22DHfB'
             ],
         ]);
     }

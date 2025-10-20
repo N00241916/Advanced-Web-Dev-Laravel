@@ -10,13 +10,14 @@
             <div class="bg-cyan-100 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Synth Details</h3> 
-                            <x-vsynth-details
+                            <x-vsynth-details  {{--allows model attributes to be called as props in the details page--}}
                                 :name="$vsynth->name"
                                 :age="$vsynth->age"
                                 :gender="$vsynth->gender"
                                 :type="$vsynth->type"
                                 :release_date="$vsynth->release_date"
                                 :image="$vsynth->image"
+                                :demolink="$vsynth->demolink"
                             />
                             
                 </div>

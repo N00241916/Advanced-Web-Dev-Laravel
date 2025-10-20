@@ -16,6 +16,7 @@ class VSynth extends Model
         'type',
         'release_date',
         'image',
+        'demolink',
         'created_at',
         'updated_at',
     ];
