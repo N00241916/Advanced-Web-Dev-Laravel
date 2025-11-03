@@ -18,9 +18,12 @@
                     <x-nav-link :href="route('vsynths.index')" :active="request()->routeIs('vsynths.index')">
                         {{ __('View All Vocal Synths') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('vsynths.create')" :active="request()->routeIs('vsynths.create')">
-                        {{ __('Add a new Synth!') }}
-                    </x-nav-link>
+
+                    @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('vsynths.create')" :active="request()->routeIs('vsynths.create')">
+                            {{ __('Add a new Synth!') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

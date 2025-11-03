@@ -22,6 +22,9 @@ class VSynthController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('vsynths.index')->with('error', 'Access Denied');
+        }
         return view('vsynths.create');
     }
 
