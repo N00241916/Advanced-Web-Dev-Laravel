@@ -20,4 +20,9 @@ class VSynth extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function tunings() 
+    {
+        return $this->hasMany(Tuning::class);
+    }
 }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(VSynthSeeder::class);
+        $this->call(TuningSeeder::class);
         
     }
 }

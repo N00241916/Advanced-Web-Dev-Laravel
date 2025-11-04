@@ -62,6 +62,15 @@ class VSynthSeeder extends Seeder
                 'image' => 'kasane-teto.png',
                 'demolink' => 'https://www.youtube.com/embed/ibdPe02EsY8?si=FMjWTWhE1i22DHfB'
             ],
+            [
+                'name' => 'Meiko',
+                'gender' => 'Female',
+                'age' => 0,
+                'type' => 'Vocaloid',
+                'release_date' => '2004-11-05',
+                'image' => 'meiko.png',
+                'demolink' => 'https://www.youtube.com/embed/A8LQjiaJwes?si=3blm2-xlXxJdf_d0'
+            ],
         ]);
     }
 }

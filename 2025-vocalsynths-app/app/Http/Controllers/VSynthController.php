@@ -69,6 +69,7 @@ class VSynthController extends Controller
      */
     public function show(VSynth $vsynth)
     {
+        $vsynth->load('tunings');
         return view('vsynths.show')->with('vsynth', $vsynth);
     }
 
