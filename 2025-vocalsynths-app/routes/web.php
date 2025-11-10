@@ -31,5 +31,6 @@ Route::delete('/vsynths/{vsynth}', [VSynthController::class, 'destroy'])->name('
 Route::resource('tunings', TuningController::class);
 
 Route::post('vsynths/{vsynth}/tunings', [TuningController::class, 'store'])->name('tunings.store');
+Route::get('/tunings/{vsynth}/create', [TuningController::class, 'create'])->name('tunings.create');
 
 require __DIR__.'/auth.php';

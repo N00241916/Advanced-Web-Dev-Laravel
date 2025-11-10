@@ -19,9 +19,13 @@ class TuningController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(VSynth $vsynth)
     {
-        //
+        
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('vsynths.index')->with('error', 'Access Denied');
+        }
+        return view('tunings.create', $vsynth);
     }
 
     /**
@@ -30,6 +34,7 @@ class TuningController extends Controller
     public function store(Request $request, VSynth $vsynth)
     {
         $request->validate([
+            // 'v_synth_id' => 'required|integer',
             'name' => 'required|string|max:255',
             'artist' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -42,7 +47,7 @@ class TuningController extends Controller
         }
 
         $vsynth->tunings()->create([
-            'vsynth_id' => $vsynth->id,
+            'v_synth_id' => $vsynth->id,
             'name' => $request->input('name'),
             'artist' => $request->input('artist'),
             'image' => $imageName

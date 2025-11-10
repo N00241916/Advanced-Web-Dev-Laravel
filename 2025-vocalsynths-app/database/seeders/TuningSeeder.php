@@ -23,6 +23,12 @@ class TuningSeeder extends Seeder
                 'artist' => 'Deco*27',
                 'image' => 'deco_miku.png',
             ],
+            [
+                'v_synth_id' => 1,
+                'name' => "Kikuo's Miku",
+                'artist' => 'Kikuo',
+                'image' => 'kikuo_miku.png',
+            ],
         ]);
     }
 }

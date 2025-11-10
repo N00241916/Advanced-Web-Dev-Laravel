@@ -24,17 +24,21 @@
                         @if($vsynth->tunings->isEmpty())
                             <p class="text-gray-600">No tunings yet...</p>
                         @else
-                            <ul class="mt-4 space-y-4">
+                            <div class="mt-4 gap-2 flex">
                                 @foreach ($vsynth->tunings as $tuning)
-                                    <li class="bg-gray-100 p-4 rounded-lg">
+                                    <div class="bg-gray-100 p-4 rounded-lg">
                                         <p class="font-semibold">{{$tuning->name}}</p>
                                         <p>{{$tuning->artist}}</p>
-                                        <img src="../images/tunings{{$tuning->image}}">
-                                    </li>
+                                        <img src="../images/tunings/{{$tuning->image}}" class="max-w-xs">
+                                    </div>
                                     
-                                @endforeach    
-                            </ul>  
+                                @endforeach   
+                                
+                            </div>  
                         @endif
+                        <div class="mt-4">
+                            <a href="{{ route('tunings.create', $vsynth) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">Add another tuning!</a>
+                        </div>
                     </div>
                 </div>
             </div>
