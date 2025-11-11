@@ -25,4 +25,9 @@ class VSynth extends Model
     {
         return $this->hasMany(Tuning::class);
     }
+
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class);
+    }
 }
