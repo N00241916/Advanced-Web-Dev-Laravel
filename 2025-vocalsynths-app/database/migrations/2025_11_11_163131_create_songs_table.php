@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cover_image');
             $table->string('artist');
             $table->date('released');
-            $table->string('audio_file');
+            $table->string('song_link');
             $table->timestamps();
         });
     }

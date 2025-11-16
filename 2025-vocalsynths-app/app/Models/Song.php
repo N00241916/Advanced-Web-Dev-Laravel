@@ -9,7 +9,7 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'cover_image', 'artist', 'released', 'audio_file'];
+    protected $fillable = ['title', 'cover_image', 'artist', 'released', 'song_link'];
 
     public function vsynths()
     {
