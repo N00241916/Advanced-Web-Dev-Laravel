@@ -71,6 +71,15 @@ class VSynthSeeder extends Seeder
                 'image' => 'meiko.png',
                 'demolink' => 'https://www.youtube.com/embed/A8LQjiaJwes?si=3blm2-xlXxJdf_d0'
             ],
+            [
+                'name' => 'Gumi',
+                'gender' => 'Female',
+                'age' => 0,
+                'type' => 'Vocaloid',
+                'release_date' => '2009-06-26',
+                'image' => 'gumi.png',
+                'demolink' => 'https://www.youtube.com/embed/2_4M9Po-DjI?si=ZNk37xaY_o_bt2jo'
+            ],
         ]);
     }
 }
