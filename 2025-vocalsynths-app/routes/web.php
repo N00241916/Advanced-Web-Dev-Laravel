@@ -28,9 +28,15 @@ Route::get('/vsynths/{vsynth}/edit', [VSynthController::class, 'edit'])->name('v
 Route::put('/vsynths/{vsynth}', [VSynthController::class, 'update'])->name('vsynths.update');
 Route::delete('/vsynths/{vsynth}', [VSynthController::class, 'destroy'])->name('vsynths.destroy');
 
-Route::resource('tunings', TuningController::class);
+Route::resource('vsynths.tunings', TuningController::class)
+    ->only(['create', 'store']);
 
-Route::post('vsynths/{vsynth}/tunings', [TuningController::class, 'store'])->name('tunings.store');
-Route::get('/tunings/{vsynth}/create', [TuningController::class, 'create'])->name('tunings.create');
+Route::get('/tunings', [TuningController::class, 'index'])->name('tunings.index');
+Route::get('/tunings/{tuning}/edit', [TuningController::class, 'edit'])->name('tunings.edit');
+Route::put('/tunings/{tuning}', [TuningController::class, 'update'])->name('tunings.update');
+Route::delete('/tunings/{tuning}', [TuningController::class, 'destroy'])->name('tunings.destroy');
+
+// Route::post('vsynths/{vsynth}/tunings', [TuningController::class, 'store'])->name('tunings.store');
+// Route::get('/tunings/{vsynth}/create', [TuningController::class, 'create'])->name('tunings.create');
 
 require __DIR__.'/auth.php';

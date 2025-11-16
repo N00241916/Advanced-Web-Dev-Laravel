@@ -70,12 +70,13 @@
         </div>
     @endisset
 
+
     <div>
         <x-primary-button>
             {{isset($tuning) ? 'Update Tuning' : 'Add Tuning'}}
         </x-primary-button>
         
-            <a href="{{ route('vsynths.show', $vsynth) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">
+            <a href="{{ route('tunings.index') }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">
                 Cancel
             </a>
             

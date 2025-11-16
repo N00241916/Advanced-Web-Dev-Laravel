@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('All Vocal Synths') }}
+            {{ __('All Synth Tunings') }}
         </h2>
 
     </x-slot>
@@ -14,28 +14,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="flex justify-between mb-4">
-                        <h3 class="font-semibold text-lg">List of Vocal Synths:</h3>
-                        <a href="{{ route('tunings.index') }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">View all variants</a>
-                    </div>
+                    <h3 class="font-semibold text-lg mb-4">List of Variants:</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($vsynths as $vsynth)  {{--loops through each vocal synth in the db and displays them--}}
+                        @foreach($tunings as $tuning)  {{--loops through each vocal synth in the db and displays them--}}
                         <div class="border p-4 rounded-lg shadow-md bg-cyan-100">
-                            <a href="{{ route('vsynths.show', $vsynth) }}">  {{--creates the layout for each individual card displaying the synths, and adds a link to a single show page with all details--}}
-                                <x-vsynth-card
-                                    :name="$vsynth->name"
-                                    :image="$vsynth->image"
+                                <x-tuning-card
+                                    :name="$tuning->name"
+                                    :image="$tuning->image"
                                 />
-                            </a>
 
                             @if(auth()->user()->role === 'admin')
                                 <div class="mt-4 flex space-x-2">
-                                    <a href="{{ route('vsynths.edit', $vsynth) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">  {{--produces an edit button that routes to the edit function in the controller, and allows the user to change a synth--}}
+                                    <a href="{{ route('tunings.edit', $tuning) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">  {{--produces an edit button that routes to the edit function in the controller, and allows the user to change a synth--}}
                                         Edit
                                     </a>
 
-                                    <form action="{{ route('vsynths.destroy', $vsynth) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete this synth?');">
+                                    <form action="{{ route('tunings.destroy', $tuning) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this variant?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-gray-600 font-bold py-2 px-4 rounded">

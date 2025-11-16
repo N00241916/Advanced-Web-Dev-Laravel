@@ -37,7 +37,7 @@
                             </div>  
                         @endif
                         <div class="mt-4">
-                            <a href="{{ route('tunings.create', $vsynth) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">Add another tuning!</a>
+                            <a href="{{ route('vsynths.tunings.create', $vsynth) }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">Add another tuning!</a>
                         </div>
                     </div>
                 </div>

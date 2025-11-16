@@ -81,5 +81,7 @@ class VSynthSeeder extends Seeder
                 'demolink' => 'https://www.youtube.com/embed/2_4M9Po-DjI?si=ZNk37xaY_o_bt2jo'
             ],
         ]);
+
+        
     }
 }
