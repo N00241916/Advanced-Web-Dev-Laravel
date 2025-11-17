@@ -29,6 +29,12 @@ class TuningSeeder extends Seeder
                 'artist' => 'Kikuo',
                 'image' => 'kikuo_miku.png',
             ],
+            [
+                'v_synth_id' => 5,
+                'name' => "32ki's Teto",
+                'artist' => '32ki',
+                'image' => '1762872933.png'
+            ],
         ]);
     }
 }

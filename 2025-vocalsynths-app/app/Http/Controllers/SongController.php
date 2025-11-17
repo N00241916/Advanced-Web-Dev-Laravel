@@ -12,7 +12,8 @@ class SongController extends Controller
      */
     public function index()
     {
-        //
+        $songs = Song::all(); //Returns all the songs, and...
+        return view('songs.index', compact('songs')); //sends them to the view index
     }
 
     /**
@@ -20,7 +21,10 @@ class SongController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('songs.index')->with('error', 'Access Denied');
+        }
+        return view('songs.create');
     }
 
     /**
@@ -28,7 +32,32 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([  //validates the parameters and sets restrictions
+            'title' => 'required',
+            'artist' => 'required',
+            'vocal_synths' => 'array',
+            'released' => 'required|date',
+            'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'song_link' => 'required'
+        ]);
+
+        if ($request->hasFile('cover_image')) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/songs'), $imageName);
+        }
+
+        Song::create([
+            'title' => $request->title,
+            'artist' => $request->artist,
+            'released' => $request->released,
+            'cover_image' => $imageName,
+            'song_link' => $request->song_link,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return to_route('songs.index')->with('success', 'Song created successfully! :3');
     }
 
     /**
@@ -36,7 +65,7 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
-        //
+        return view('songs.show')->with('song', $song);
     }
 
     /**

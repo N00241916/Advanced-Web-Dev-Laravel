@@ -25,5 +25,7 @@ class SongSeeder extends Seeder
             ['title' => 'Young Girl A', 'cover_image' => 'young_girl.png', 'artist' => 'Siinamota', 'released' => '2013-10-13', 'song_link' => 'https://www.youtube.com/embed/AqI97zHMoQw?si=X_IDtFjBLBbCqIz6'],
             ['title' => 'Medicine', 'cover_image' => 'medicine.png', 'artist' => 'Sasuke Haraguchi', 'released' => '2024-02-28', 'song_link' => 'https://www.youtube.com/embed/F38EuG2dAyM?si=EXlGtEskHovRN9zB'],
         ]);
+
+        
     }
 }
