@@ -20,7 +20,7 @@
                             :demolink="$vsynth->demolink"
                         />
                     <div class="align-items-center">
-                        <h4 class="font-semibold text-md mt-8">Well known Tunings~</h4>
+                        <h4 class="font-semibold text-md mt-8">Notable Tunings~</h4>
                         @if($vsynth->tunings->isEmpty())
                             <p class="text-gray-600">No tunings yet...</p>
                         @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\VSynth;
 use Illuminate\Http\Request;
 
 class SongController extends Controller
@@ -12,7 +13,7 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs = Song::all(); //Returns all the songs, and...
+        $songs = Song::with('vsynths')->get(); //Returns all the songs, and...
         return view('songs.index', compact('songs')); //sends them to the view index
     }
 
@@ -24,7 +25,8 @@ class SongController extends Controller
         if (auth()->user()->role !== 'admin') {
             return redirect()->route('songs.index')->with('error', 'Access Denied');
         }
-        return view('songs.create');
+        $vsynths = VSynth::all();
+        return view('songs.create', compact('vsynths'));
     }
 
     /**
@@ -32,10 +34,10 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([  //validates the parameters and sets restrictions
+        $validated = $request->validate([  //validates the parameters and sets restrictions
             'title' => 'required',
             'artist' => 'required',
-            'vocal_synths' => 'array',
+            'vsynths' => 'array',
             'released' => 'required|date',
             'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'song_link' => 'required'
@@ -47,15 +49,21 @@ class SongController extends Controller
             $request->image->move(public_path('images/songs'), $imageName);
         }
 
-        Song::create([
-            'title' => $request->title,
-            'artist' => $request->artist,
-            'released' => $request->released,
-            'cover_image' => $imageName,
-            'song_link' => $request->song_link,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $song = Song::create($validated);
+
+        if ($request->has('vsynths')) {
+            $song->vsynths->attach($request->vsynths);
+        }
+
+        // Song::create([
+        //     'title' => $request->title,
+        //     'artist' => $request->artist,
+        //     'released' => $request->released,
+        //     'cover_image' => $imageName,
+        //     'song_link' => $request->song_link,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
         return to_route('songs.index')->with('success', 'Song created successfully! :3');
     }
@@ -65,6 +73,7 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
+        $song->load('vsynths');
         return view('songs.show')->with('song', $song);
     }
 
@@ -73,7 +82,9 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
-        //
+        $vsynths = VSynth::all();
+        $songVSynths = $song->vsynths->pluck('id')->toArray();
+        return view('songs.edit', compact('song', 'vsynths', 'songVSynths'));
     }
 
     /**
@@ -81,7 +92,28 @@ class SongController extends Controller
      */
     public function update(Request $request, Song $song)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'artist' => 'required|string',
+            'vsynths' => 'array',
+            'released' => 'date',
+            'cover_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'song_link' => 'required'
+        ]);
+
+        if ($request->hasFile('cover_image')) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->cover_image->move(public_path('images/songs'), $imageName);
+        }
+
+        $song->update($validated);
+
+        if ($request->has('vsynths')) {
+            $song->vsynths()->sync($request->vsynths);
+        }
+
+        return redirect()->route('songs.index')->with('success', 'Song successfully updated~');
     }
 
     /**
@@ -89,6 +121,9 @@ class SongController extends Controller
      */
     public function destroy(Song $song)
     {
-        //
+        $song->vsynths()->detach();
+        $song->delete();
+
+        return redirect()->route('songs.index')->with('success', 'Song deleted successfully.');
     }
 }

@@ -1,4 +1,4 @@
-@props(['title', 'artist', 'released', 'cover_image', 'song_link']) {{--Imports the values from the database to load them in this file--}}
+@props(['title', 'artist', 'released', 'cover_image', 'song_link', 'vsynths']) {{--Imports the values from the database to load them in this file--}}
 
 <div class="border rounded-lg shadow-md p-6 bg-sky-200 hover:shadow-lg transition duration-300 max-w-4xl mx-auto"> {{--changed size of box from xl -> 4xl to fit youtube embed--}}
     
@@ -9,5 +9,14 @@
     <h1 class="font-bold text-black-600 mb-2" style="font-size: 3rem;">{{ $title }}</h1>
     <h2 class="text-gray-500 text-sm italic mb-4" style="font-size: 1rem;">Artist: {{ $artist }}</h2>
     <h2 class="text-gray-500 text-sm italic mb-4" style="font-size: 1rem;">Released: {{ $released }}</h2>
+    <h2 class="text-gray-500 text-sm italic mb-4" style="font-size: 1rem;">Featuring:</h2>
+    <div class="flex">
+        @foreach ($vsynths as $vsynth)
+            <div>
+                <h2 class="text-black-500 text-sm mb-4" style="font-size: 1rem;">{{ $vsynth->name }}</h2>
+                <img src="{{ asset('images/vsynths/' . $vsynth->image) }}" alt="{{ $vsynth->name }}" class="w-full max-w-xs h-auto object-cover">
+            </div>
+        @endforeach
+    </div>
       
 </div>

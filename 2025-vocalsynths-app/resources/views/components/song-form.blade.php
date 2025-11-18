@@ -1,4 +1,4 @@
-@props(['action', 'method', 'song', 'vsynth'])
+@props(['action', 'method', 'song', 'vsynths', 'songVSynths'])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data"> {{--Declares the forms method and encryption type--}}
     @csrf
@@ -34,6 +34,18 @@
         @error('artist')
             <p class="text-sm text-red-600">{{$message}}</p>
         @enderror
+    </div>
+
+    <div class="mb-4">
+        <label for="vsynths" class="block text-sm text-gray-700">Vocal Synth(s)</label>
+        @foreach($vsynths as $vsynth)
+            <div class="flex items-center">
+                <input type="checkbox" name="vsynths[]" id="vsynth_{{ $vsynth->id }}" value="{{ $vsynth->id }}"
+                                        @if(isset($songVSynths) && in_array($vsynth->id, $songVSynths)) checked @endif>
+                <label for="vsynth_{{ $vsynth->id }}" class="ml-2">{{ $vsynth->name }}</label>
+            </div>
+        @endforeach
+            
     </div>
 
     <div class="mb-4">
@@ -82,7 +94,7 @@
         @enderror
     </div>
 
-    @isset($song->image)
+    @isset($song->cover_image)
         <div class="mb-4">
             <img src="{{asset( 'images/songs/' . $song->cover_image)}}" alt="Song Image" class="w-24 h-32 object-cover">
         </div>

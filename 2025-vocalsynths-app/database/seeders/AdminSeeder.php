@@ -20,5 +20,12 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'admin',
         ]);
+
+        User::Create([
+            'name' => 'Normal User',
+            'email' => 'user' . time() . '@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'user',
+        ]);
     }
 }

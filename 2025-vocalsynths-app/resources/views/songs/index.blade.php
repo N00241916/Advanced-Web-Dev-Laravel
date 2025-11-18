@@ -14,7 +14,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="font-semibold text-lg mb-4">Songlist:</h3>
+                    <div class="flex justify-between mb-4">
+                        <h3 class="font-semibold text-lg">Songlist:</h3>
+                        <a href="{{ route('songs.create') }}" class="text-gray-600 bg-blue-300 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded">Add a song!~</a>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($songs as $song)  {{--loops through each vocal synth in the db and displays them--}}
                         <div class="border p-4 rounded-lg shadow-md bg-cyan-100">

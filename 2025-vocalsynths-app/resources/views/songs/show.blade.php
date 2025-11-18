@@ -13,6 +13,7 @@
                         <x-song-details  {{--allows model attributes to be called as props in the details page--}}
                             :title="$song->title"
                             :artist="$song->artist"
+                            :vsynths="$song->vsynths"
                             :released="$song->released"
                             :cover_image="$song->cover_image"
                             :song_link="$song->song_link"
