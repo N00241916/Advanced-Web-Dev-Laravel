@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-[url(/public/images/bg-1.png)] bg-cover bg-center bg-no-repeat">
+        <div class="min-h-screen bg-[url(/public/images/bg-1.png)] bg-cover bg-center bg-no-repeat bg-fixed">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
