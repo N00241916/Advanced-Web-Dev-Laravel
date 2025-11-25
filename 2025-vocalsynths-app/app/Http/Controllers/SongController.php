@@ -11,9 +11,15 @@ class SongController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $songs = Song::with('vsynths')->get(); //Returns all the songs, and...
+        $search = $request->input('search');
+        $songs = Song::query()
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', "%{$search}%") 
+                    ->orWhere('artist', 'like', "%{$search}%");
+            })->with('vsynths')
+            ->get();
         return view('songs.index', compact('songs')); //sends them to the view index
     }
 

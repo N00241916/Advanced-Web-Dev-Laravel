@@ -11,9 +11,17 @@ class VSynthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vsynths = VSynth::all(); //Returns all the synths, and...
+        $search = $request->input('search');
+        //Fetch dragons from the database, optionally filtering by search query
+        $vsynths = VSynth::query()
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%") //reads the query parameter 'search' from the request. Adds a SQL WHERE clause to filter by name or type.
+                    ->orWhere('type', 'like', "%{$search}%")
+                    ->orWhere('gender', 'like', "%{$search}%");
+            })
+            ->get();//retrieves the filtered list from the database.
         return view('vsynths.index', compact('vsynths')); //sends them to the view index
     }
 
